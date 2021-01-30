@@ -14,6 +14,8 @@ public class BigGunMover : MonoBehaviour
     [SerializeField] private Button _buttonRotateCarriageRight;
     
     private float _step = 5;
+    private float _maxAngleInclination = 80;
+    private float _maxAngleElevation = 5;
 
     private void OnEnable()
     {
@@ -31,15 +33,20 @@ public class BigGunMover : MonoBehaviour
         _buttonRotateCarriageRight.onClick.RemoveListener(OnButtonRotateCarriageRightClick);
     }
 
+    private void Awake()
+    {
+        _gunBarrel.rotation *= Quaternion.Euler(45, 45, 0);
+        //_gunBarrel.rotation *= Quaternion.Euler(0, 0, 0);
+    }
     private void OnButtonRotateBarrelUpClick()
     {
-        if (_gunBarrel.rotation.eulerAngles.x >= 5)
+        if (_gunBarrel.rotation.eulerAngles.x >= _maxAngleElevation)
             _gunBarrel.rotation *= Quaternion.Euler(-_step, 0, 0);
     }
 
     private void OnButtonRotateBarrelDownClick()
     {
-        if (_gunBarrel.rotation.eulerAngles.x <= 85)
+        if (_gunBarrel.rotation.eulerAngles.x <= _maxAngleInclination)
             _gunBarrel.rotation *= Quaternion.Euler(_step, 0, 0);
     }
 
