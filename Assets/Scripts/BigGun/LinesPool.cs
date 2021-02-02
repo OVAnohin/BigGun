@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class LinesPool : MonoBehaviour
@@ -22,7 +21,7 @@ public class LinesPool : MonoBehaviour
     }
     protected bool TryGetObject(out GameObject result)
     {
-        result = _pool.FirstOrDefault(p => p.activeSelf == false);
+        result = _pool.Find(p => p.activeSelf == false);
 
         return result != null;
     }

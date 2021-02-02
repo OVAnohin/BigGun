@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class Surface : MonoBehaviour
 {
-    [SerializeField] private float _absorption;
+    [SerializeField] private SurfaceData _surfaceData;
 
-    public float Absorption => _absorption;
-
-    private void Start()
-    {
-        if (_absorption < 0)
-            _absorption = 0;
-    }
+    public float Absorption => _surfaceData.Absorption;
 }
