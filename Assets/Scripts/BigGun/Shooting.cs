@@ -56,9 +56,9 @@ public class Shooting : LinesPool
         LineRenderer line = prefab.GetComponent<LineRenderer>();
         line.SetPosition(0, startPoint);
         line.SetPosition(1, endPoint);
-        line.SetWidth(0.15f, 0.15f);
+        line.startWidth = 0.15f;
         line.material = new Material(Shader.Find("Sprites/Default"));
-        line.SetColors(color, color);
+        line.startColor = color;
         prefab.SetActive(true);
     }
 
