@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ddcff813647ba242b948cb42e6fb65d, type: 3}
-  m_Name: Glass
+  m_Script: {fileID: 11500000, guid: c1367496787fa3843b70001a1049df47, type: 3}
+  m_Name: Mirror
   m_EditorClassIdentifier: 
-  _absorption: 0.5
+  _absorption: 0.1

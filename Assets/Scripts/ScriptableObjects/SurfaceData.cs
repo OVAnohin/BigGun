@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SurfaceData : ScriptableObject
+[CreateAssetMenu(fileName = "SurfaceData", menuName = "Surface/New Surface", order = 51)]
+public class SurfaceData : ScriptableObject
 {
-    [SerializeField] protected float _absorption;
+    [SerializeField] private float _absorption;
 
     public float Absorption 
     {

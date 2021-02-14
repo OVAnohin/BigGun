@@ -8,21 +8,32 @@ public class LinesPool : MonoBehaviour
     [SerializeField] private int _capacity;
 
     private List<GameObject> _pool = new List<GameObject>();
+    private GameObject _prefab;
 
     protected void Initialize(GameObject prefab)
     {
-        for (int i = 0; i < _capacity; i++)
-        {
-            GameObject spawned = Instantiate(prefab, _container.transform);
-            spawned.SetActive(false);
+        _prefab = prefab;
 
-            _pool.Add(spawned);
-        }
+        for (int i = 0; i < _capacity; i++)
+            SpawnPrefab(_prefab);
     }
-    protected bool TryGetObject(out GameObject result)
+
+    private void SpawnPrefab(GameObject prefab)
     {
+        GameObject spawned = Instantiate(prefab, _container.transform);
+        spawned.SetActive(false);
+
+        _pool.Add(spawned);
+    }
+
+    protected GameObject GetObject()
+    {
+        GameObject result;
         result = _pool.Find(p => p.activeSelf == false);
 
-        return result != null;
+        if (result == null)
+            SpawnPrefab(_prefab);
+
+        return result;
     }
 }

@@ -13,9 +13,9 @@ public class BigGunMover : MonoBehaviour
     [SerializeField] private Button _buttonRotateCarriageLeft;
     [SerializeField] private Button _buttonRotateCarriageRight;
 
-    private float _step = 5;
+    private float _step = 2;
     private float _maxAngleInclination = 80;
-    private float _maxAngleElevation = 5;
+    private float _maxAngleElevation = 2;
 
     private void OnEnable()
     {

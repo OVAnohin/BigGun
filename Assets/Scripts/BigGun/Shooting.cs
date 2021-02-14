@@ -17,23 +17,37 @@ public class Shooting : LinesPool
     private float _power;
     private float _ragne;
     private List<Path> _paths;
+    private BigGun _bigGun;
+
+    private void Awake()
+    {
+        _bigGun = GetComponent<BigGun>();
+        Initialize(_linePrefab);
+    }
 
     private void OnEnable()
     {
         _fireButton.onClick.AddListener(OnFireButtonClick);
+        _bigGun.Ranging += OnRangeChanged;
+        _bigGun.Powering += OnPowerChanged;
+
     }
 
     private void OnDisable()
     {
         _fireButton.onClick.RemoveListener(OnFireButtonClick);
+        _bigGun.Ranging -= OnRangeChanged;
+        _bigGun.Powering -= OnPowerChanged;
     }
 
-    private void Start()
+    private void OnRangeChanged(float range)
     {
-        _power = GetComponent<BigGun>().Power;
-        _ragne = GetComponent<BigGun>().Range;
+        _ragne = range;
+    }
 
-        Initialize(_linePrefab);
+    private void OnPowerChanged(float power)
+    {
+        _power = power;
     }
 
     private void OnFireButtonClick()
@@ -43,11 +57,9 @@ public class Shooting : LinesPool
 
         foreach (var path in _paths)
         {
-            if (TryGetObject(out GameObject element))
-            {
-                SetLine(element, path.StartPoint, path.EndPoint, Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f));
-                StartCoroutine(DrawLine(element));
-            }
+            GameObject element = GetObject();
+            SetLine(element, path.StartPoint, path.EndPoint, Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f));
+            StartCoroutine(DrawLine(element));
         }
     }
 
